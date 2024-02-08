@@ -2,10 +2,10 @@
   "name": "tuic-individual",
   "version": "1.0.0",
   "description": "This is the API for handling TUIC Customers Data, Admin Data and much more.",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "The United Insurance of Pakistan PVT LTD",
