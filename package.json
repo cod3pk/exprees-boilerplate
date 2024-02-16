@@ -2,17 +2,19 @@
   "name": "tuic-individual",
   "version": "1.0.0",
   "description": "This is the API for handling TUIC Customers Data, Admin Data and much more.",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "The United Insurance of Pakistan PVT LTD",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.1543.0",
+    "axios": "^1.6.7",
     "bcrypt": "^5.1.1",
+    "compression": "^1.7.4",
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
@@ -22,7 +24,9 @@
     "helmet-csp": "^3.4.0",
     "hpp": "^0.2.3",
     "jsonwebtoken": "^9.0.2",
-    "pg": "^8.11.3",
+    "mongoose": "^8.1.2",
+    "morgan": "^1.10.0",
+    "redis": "^4.6.13",
     "socket.io": "^4.7.4",
     "xss": "^1.0.14"
   },
