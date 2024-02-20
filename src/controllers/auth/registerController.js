@@ -1,7 +1,7 @@
-const expressValidator = require('express-validator');
 const bcrypt = require('bcrypt');
 const userModel = require('../../models/User');
 
+// Register User
 exports.registerUser = async (req, res) => {
 
     const {firstName, lastName, email, password, role = 'customer'} = req.body;
@@ -38,6 +38,34 @@ exports.registerUser = async (req, res) => {
     }
 };
 
+// Update User profile
 exports.updateUserProfile = async (req, res) => {
+    const userID = req.params.userId
+    const {phone, cnic, dob, address, profileImage} = req.body;
+
+    try {
+        const updatedUser = await userModel.findByIdAndUpdate(
+            userID,
+            {phone, cnic, dob, address, profileImage},
+            {new: true, runValidators: true}
+        )
+
+        if (!updatedUser) {
+            return res.status(404).json({
+                message: 'User Not found'
+            });
+        }
+
+        res.status(200).json({
+            message: 'Profile has been updated successfully',
+            data: updatedUser
+        });
+
+    } catch (err) {
+        console.error(err)
+        res.status(500).json({
+            message: 'Error updating the profile', error: err.message
+        })
+    }
 
 }
