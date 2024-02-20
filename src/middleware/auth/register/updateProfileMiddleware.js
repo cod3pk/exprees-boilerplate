@@ -1,5 +1,5 @@
 const {body, validationResult} = require('express-validator');
-const dateFormatter = require('../../utils/dateFormatter');
+const dateFormatter = require('../../../utils/dateFormatter');
 
 const updateProfileRules = () => [
     body('phone').optional().trim().isMobilePhone(),

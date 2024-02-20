@@ -20,7 +20,6 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 // Routes
-app.use('/', require('./routes/indexRoute'));
 app.use('/api/auth', require('./routes/authRoute'));
 
 // Global error handler
