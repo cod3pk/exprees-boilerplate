@@ -11,7 +11,7 @@ exports.login = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        `g`// Compare the submitted password with the hashed password in the database
+        // Compare the submitted password with the hashed password in the database
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
