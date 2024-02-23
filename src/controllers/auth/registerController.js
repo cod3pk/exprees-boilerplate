@@ -3,7 +3,7 @@ const userModel = require('../../models/User');
 const jwt = require('jsonwebtoken');
 
 // Register User
-exports.registerUser = async (req, res) => {
+const registerUser = async (req, res) => {
 
   const {firstName, lastName, email, password, role = 'customer'} = req.body;
 
@@ -24,15 +24,22 @@ exports.registerUser = async (req, res) => {
 
     await newUser.save();
 
-    const token = jwt.sign(
-      {userId: newUser._id, email: newUser.email},
+    const accessToken = jwt.sign(
+      {userId: user._id, email: user.email},
       process.env.JWT_SECRET,
-      {expiresIn: '24h'}
+      {expiresIn: '15m'}
+    );
+
+    const refreshToken = jwt.sign(
+      {userId: user._id, email: user.email},
+      process.env.JWT_REFRESH_SECRET,
+      {expiresIn: '7d'}
     );
 
     res.status(201).json({
       message: 'User registered successfully.',
-      token: token,
+      token: accessToken,
+      refreshToken: refreshToken,
       user_id: newUser._id
     });
   } catch (error) {
@@ -42,7 +49,7 @@ exports.registerUser = async (req, res) => {
 };
 
 // Update User profile
-exports.updateUserProfile = async (req, res) => {
+const updateUserProfile = async (req, res) => {
   const userID = req.params.userId
   const {phone, cnic, dob, address, profileImage} = req.body;
 
@@ -74,3 +81,5 @@ exports.updateUserProfile = async (req, res) => {
   }
 
 }
+
+module.exports = {registerUser, updateUserProfile};
