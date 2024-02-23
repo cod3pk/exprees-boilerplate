@@ -17,14 +17,13 @@ const login = async (req, res) => {
 
     const accessToken = jwt.sign(
       {userId: user._id, email: user.email},
-      process.env.JWT_SECRET,
+      process.env.ACCESS_TOKEN_SECRET,
       {expiresIn: '15m'}
     );
 
     const refreshToken = jwt.sign(
       {userId: user._id, email: user.email},
-      process.env.JWT_REFRESH_SECRET,
-      {expiresIn: '7d'}
+      process.env.REFRESH_TOKEN_SECRET,
     );
 
     user.refreshToken.push(refreshToken);
@@ -42,4 +41,4 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { login }
+module.exports = {login}

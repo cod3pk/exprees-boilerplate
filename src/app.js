@@ -27,10 +27,10 @@ app.use('/api/media', require('./routes/fileUploader'));
 
 // Global error handler
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({
-        message: 'There is technical problem in the API',
-    });
+  console.error(err.stack);
+  res.status(500).json({
+    message: 'There is technical problem in the API',
+  });
 });
 
 app.listen(port, () => console.log(`Server running on port ${port}`));

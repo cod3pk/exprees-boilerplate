@@ -2,7 +2,7 @@ const userModel = require("../../models/User");
 const jwt = require("jsonwebtoken");
 
 refreshTokenGen = async (req, res) => {
-  const {refreshToken} = req.body;
+  const refreshToken = req.body.refreshToken;
 
   if (!refreshToken) {
     res.status(401).json({
@@ -11,7 +11,7 @@ refreshTokenGen = async (req, res) => {
   }
 
   try {
-    const payload = jwt.verify(refreshToken, process.env.JWT_SECRET);
+    const payload = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
     const user = await userModel.findById(payload.userId);
 
     if (!user || !user.refreshToken.includes(refreshToken)) {
@@ -20,13 +20,13 @@ refreshTokenGen = async (req, res) => {
 
     const newAccessToken = jwt.sign(
       {userId: user._id, email: user.email},
-      process.env.JWT_SECRET,
+      process.env.ACCESS_TOKEN_SECRET,
       {expiresIn: '15m'}
     );
 
     res.status(200).json({
       message: 'Access Token refreshed successfully',
-      accessToken: newAccessToken
+      token: newAccessToken
     });
 
   } catch (err) {

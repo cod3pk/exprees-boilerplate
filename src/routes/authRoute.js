@@ -4,15 +4,19 @@ const registerController = require('../controllers/auth/registerController');
 const loginController = require('../controllers/auth/loginController');
 const refreshTokenController = require('../controllers/auth/refreshTokenController');
 const logoutController = require("../controllers/auth/logoutController");
-const {validate, registerRules} = require("../middleware/auth/registerMiddleware");
+const {validate, registerRules} = require('../middleware/auth/registerMiddleware');
 const {loginRules} = require('../middleware/auth/loginMiddleware');
-const {updateProfileRules} = require("../middleware/auth/updateProfileMiddleware");
-const {authenticationToken} = require("../middleware/jwtMiddleware");
+const {updateProfileRules} = require('../middleware/auth/updateProfileMiddleware');
+const {authenticationToken} = require('../middleware/jwtMiddleware');
 
 router.post('/register', registerRules(), validate, registerController.registerUser);
 router.patch('/profile/:userId', authenticationToken, updateProfileRules(), validate, registerController.updateUserProfile);
 router.post('/login', loginRules(), validate, loginController.login)
 router.post('/refreshToken', refreshTokenController.refreshTokenGen)
 router.post('/logout', logoutController.logout);
+
+router.get('/testing', authenticationToken, (req, res) => {
+  res.status(200).json({message: 'This is working'});
+});
 
 module.exports = router;

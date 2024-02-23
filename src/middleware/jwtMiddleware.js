@@ -14,7 +14,7 @@ exports.authenticationToken = (req, res, next) => {
     return res.status(401).json({message: 'Token is missing in the Authorization header.'});
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) {
       const message = getErrorMessage(err);
       return res.status(403).json({message});
