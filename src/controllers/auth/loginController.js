@@ -26,7 +26,7 @@ const login = async (req, res) => {
       process.env.REFRESH_TOKEN_SECRET,
     );
 
-    user.refreshToken.push(refreshToken);
+    user.refreshTokens.push(refreshToken);
     await user.save();
 
     res.status(200).json({

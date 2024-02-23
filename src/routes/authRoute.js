@@ -13,10 +13,6 @@ router.post('/register', registerRules(), validate, registerController.registerU
 router.patch('/profile/:userId', authenticationToken, updateProfileRules(), validate, registerController.updateUserProfile);
 router.post('/login', loginRules(), validate, loginController.login)
 router.post('/refreshToken', refreshTokenController.refreshTokenGen)
-router.post('/logout', logoutController.logout);
-
-router.get('/testing', authenticationToken, (req, res) => {
-  res.status(200).json({message: 'This is working'});
-});
+router.delete('/logout', logoutController.logout);
 
 module.exports = router;

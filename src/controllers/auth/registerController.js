@@ -25,15 +25,18 @@ const registerUser = async (req, res) => {
     await newUser.save();
 
     const accessToken = jwt.sign(
-      {userId: user._id, email: user.email},
+      {userId: newUser._id, email: newUser.email},
       process.env.ACCESS_TOKEN_SECRET,
       {expiresIn: '15m'}
     );
 
     const refreshToken = jwt.sign(
-      {userId: user._id, email: user.email},
+      {userId: newUser._id, email: newUser.email},
       process.env.REFRESH_TOKEN_SECRET,
     );
+
+    newUser.refreshTokens.push(refreshToken);
+    await newUser.save();
 
     res.status(201).json({
       message: 'User registered successfully.',
@@ -65,7 +68,7 @@ const updateUserProfile = async (req, res) => {
       });
     }
 
-    const {password: _, __v: __, ...userFilteredData} = updatedUser.toObject();
+    const {password: _, __v: __, refreshTokens: ___, ...userFilteredData} = updatedUser.toObject();
 
     res.status(200).json({
       message: 'Profile has been updated successfully',

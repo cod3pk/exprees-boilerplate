@@ -26,7 +26,7 @@ const userSchema = new Schema({
   dob: {type: Date},
   address: {type: String},
   profileImage: {type: String},
-  refreshToken: {type: [String], default: []},
+  refreshTokens: {type: [String], default: []},
 
   // Optional agent details
   agentDetails: agentDetailsSchema
