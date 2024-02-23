@@ -8,7 +8,7 @@ exports.uploadFileToS3 = async (fileData, fileName, mimeType) => {
     const directoryPath = getDirectoryStructure();
     const bucketName = process.env.S3_BUCKET;
     const uniqueIdentifier = uuidv4();
-    
+
     const sanitizedFileName = fileName.replace(/\s+/g, '-');
     const uniqueFileName = `${uniqueIdentifier}-${sanitizedFileName}`;
 
