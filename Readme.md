@@ -129,4 +129,4 @@ I welcome contributions from everyone. To get started:
 4. Push your work back up to your fork.
 5. Submit a Pull request so that we can review your changes.
 
-Please refer to our `CONTRIBUTING.md` for detailed contribution guidelines. If you need any type of help, please feel free to ping at [asfandkhan404@gmail.com](mailto:asfandkhan404@gmail.com).
+If you need any type of help, please feel free to ping me at [asfandkhan404@gmail.com](mailto:asfandkhan404@gmail.com).
