@@ -1,14 +1,22 @@
 {
-  "name": "tuic-individual",
+  "name": "express-project-starter",
   "version": "1.0.0",
-  "description": "This is the API for handling TUIC Customers Data, Admin Data and much more.",
+  "description": "This is starter app for creating a secure REST API in Express.",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "The United Insurance of Pakistan PVT LTD",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cod3pk/express-project-starter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cod3pk/express-project-starter/issues"
+  },
+  "homepage": "https://github.com/cod3pk/express-project-starter#readme",
+  "author": "Asfand Yar Ali khan <asfandkhan404@gmail.com.com> (https://github.com/cod3pk)",
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.515.0",

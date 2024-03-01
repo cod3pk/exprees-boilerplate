@@ -6,8 +6,8 @@ refreshTokenGen = async (req, res) => {
 
   if (!refreshToken) {
     res.status(401).json({
-      message: "Refresh Token is required."
-    })
+      message: "Refresh Token is required.",
+    });
   }
 
   try {
@@ -15,24 +15,22 @@ refreshTokenGen = async (req, res) => {
     const user = await userModel.findById(payload.userId);
 
     if (!user || !user.refreshToken.includes(refreshToken)) {
-      return res.status(403).json({message: 'Refresh Token is invalid'});
+      return res.status(403).json({ message: "Refresh Token is invalid" });
     }
 
     const newAccessToken = jwt.sign(
-      {userId: user._id, email: user.email},
+      { userId: user._id, email: user.email },
       process.env.ACCESS_TOKEN_SECRET,
-      {expiresIn: '15m'}
+      { expiresIn: "15m" }
     );
 
     res.status(200).json({
-      message: 'Access Token refreshed successfully',
-      token: newAccessToken
+      message: "Access Token refreshed successfully",
+      token: newAccessToken,
     });
-
   } catch (err) {
-    res.status(403).json({message: 'Invalid Refresh Token'});
+    res.status(403).json({ message: "Invalid Refresh Token" });
   }
-
-}
+};
 
 module.exports = { refreshTokenGen };
